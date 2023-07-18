@@ -6,7 +6,12 @@ import requests
 
 webhook_url = input("Paste DISCORD webhook URL here: ").strip()
 username = input("What should the webhook name be? ").strip()
-avatar_url = input("Paste link to pfp image: ").strip()
+default_avatar_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/935px-Python-logo-notext.svg.png"
+avatar_url = input("Paste link to pfp image (or press Enter for default): ").strip()
+
+if not avatar_url:
+    avatar_url = default_avatar_url
+
 content = input("What should message content be? ").strip()
 
 
