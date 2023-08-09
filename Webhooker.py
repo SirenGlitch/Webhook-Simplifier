@@ -1,6 +1,25 @@
 import requests
+from urllib.parse import urlparse
 
-webhook_url = input("Paste DISCORD webhook URL here: ").strip()
+allowed_domains = ["discord.com", "*.discord.com"]
+
+while True:
+    webhook_url = input("Paste Discord webhook URL here: ").strip()
+
+    # Add default scheme if missing
+    if not webhook_url.startswith(("http://", "https://")):
+        webhook_url = "https://" + webhook_url
+
+    # Parse the URL
+    parsed_url = urlparse(webhook_url)
+    domain = parsed_url.netloc.replace("www.", "").replace("https://", "")
+
+    # Check if the domain is in the allowed_domains list
+    if any(domain.endswith(allowed) for allowed in allowed_domains):
+        break
+    else:
+        print("Invalid URL. Only Discord URLs are allowed.")
+
 username = input("What should the webhook name be? ").strip()
 default_avatar_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/935px-Python-logo-notext.svg.png"
 avatar_url = input("Paste link to pfp image (or press Enter for default): ").strip()
