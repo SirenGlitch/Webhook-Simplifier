@@ -1,5 +1,6 @@
-import requests
 from urllib.parse import urlparse
+
+import requests
 
 allowed_domains = ["discord.com", "*.discord.com"]
 
@@ -37,7 +38,8 @@ while True:
 
 while True:
     confirmation = input(
-        "Is this correct?\n username: {}\n Profile image URL: {}\n message: {}\n yes or no? ".format(username, avatar_url, content)).strip().lower()
+        "Is this correct?\n username: {}\n Profile image URL: {}\n message: {}\n yes or no? ".format(
+            username, avatar_url, content)).strip().lower()
 
     if confirmation.startswith("y"):
         print("Okay, pinging webhook...")
